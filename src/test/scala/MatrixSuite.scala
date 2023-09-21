@@ -21,7 +21,7 @@ class MatrixSuite extends AnyFunSuite {
   }
 
   test("Matrix minor removes correct rows/columns") {
-    assert(example_1.minor(0, 0).cell(0, 0) == 5)
+    assert(example_1.minor(0, 0) == Matrix(List(List(5,6),List(8,9))))
   }
 
   test("Determinant function properly calculates the determinant of the matrix") {
