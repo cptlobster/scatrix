@@ -114,9 +114,20 @@ class Matrix (val contents: List[List[Int]]) {
       }).sum
     if square then det_inner(this) else throw NotSquareMatrixException()
   }
-  /** Multiply two matrices together. */
+  /**
+   * Multiply two matrices together. This is accomplished by taking the dot product of each row in the first with each
+   * row in the second.
+   *
+   * {{{
+   *  [a b][e f] = [ae+bg af+bh]
+   *  [c d][g h]   [ce+dg cf+dh]
+   * }}}
+   *
+   */
   def *(other: Matrix): Matrix = {
-    if can_multiply(other) then Matrix((for (i <- 0 until rows) yield {
+    if this == Matrix.identity(this.cols) then other
+    else if other == Matrix.identity(this.cols) then this
+    else if can_multiply(other) then Matrix((for (i <- 0 until rows) yield {
       (for (j <- 0 until other.cols) yield {
         row(i).zip(other.col(j)).map((a, b) => a * b).sum
       }).toList
