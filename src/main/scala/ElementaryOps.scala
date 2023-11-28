@@ -49,10 +49,10 @@ class ElementaryOps(val mat: Matrix) {
   def swap(r1: Int, r2: Int): ElementaryOps = {
     val op = Matrix((for (i <- 0 until mat.rows) yield {
       (for (j <- 0 until mat.cols) yield {
-        if j == r1 && i == r2 then 1f
-        else if i == r1 && j == r2 then 1f
-        else if i == j then 1f
-        else 0f
+        if j == r1 && i == r2 then 1d
+        else if i == r1 && j == r2 then 1d
+        else if i == j then 1d
+        else 0d
       }).toList
     }).toList)
     ElementaryOps(mat * op)
@@ -70,8 +70,8 @@ class ElementaryOps(val mat: Matrix) {
     val op = Matrix((for (i <- 0 until mat.rows) yield {
       (for (j <- 0 until mat.cols) yield {
         if i == rt && j == rs then scalar
-        else if i == j then 1f
-        else 0f
+        else if i == j then 1d
+        else 0d
       }).toList
     }).toList)
     ElementaryOps(mat * op)
