@@ -61,6 +61,8 @@ trait VectorSpace[T <: VectorSpace[T]]:
    * */
   def length: Double = math.sqrt(dot(this.*(1)))
 
+  def distance(other: T): Double = (this - other).length
+
   def normalize: T = this / length
 
   val size: Int
