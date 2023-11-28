@@ -18,7 +18,7 @@
 
 package dev.cptlobster.scatrix
 
-case class Vec3(x: Double, y: Double, z: Double) extends VectorSpace[Vec3]:
+class Vec3(val x: Double, val y: Double, val z: Double) extends VectorSpace[Vec3]:
   // This is an example of defining your own vector space. In this case, we're defining R_3. In this first part, we just
   // declare the minimal elements of the class (the rest is determined by our [[VectorSpace]] trait!)
   def ==(other: Vec3): Boolean = x == other.x && y == other.y && z == other.z
@@ -29,3 +29,7 @@ case class Vec3(x: Double, y: Double, z: Double) extends VectorSpace[Vec3]:
   // Since this is a 3-dimensional vector, we can also declare the cross product!
   /** Take the cross product of two vectors (return the orthogonal complement). */
   def cross(other: Vec3): Vec3 = ???
+
+object Vec3:
+  def apply(x: Double, y: Double, z: Double): Vec3 = new Vec3(x, y, z)
+  def zero: Vec3 = new Vec3(0, 0, 0)

@@ -6,7 +6,7 @@ class VectorSuite extends AnyFunSuite {
   val u: Vec3 = Vec3(2, 3, 1)
   val v: Vec3 = Vec3(0, 1, 4)
   val w: Vec3 = Vec3(2, 0, 0)
-  val zero: Vec3 = Vec3(0, 0, 0)
+  val zero: Vec3 = Vec3.zero
 
   test("Vector addition") {
     // addition
