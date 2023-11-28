@@ -29,7 +29,7 @@ import scala.annotation.{tailrec, targetName}
  * The Matrix class contains 2D array of elements.
  *
  */
-class Matrix (val contents: List[List[Int]]) {
+class Matrix (val contents: List[List[Double]]) {
   /* Display */
   override def toString: String = (for (i <- contents) yield { i.mkString("[", " ", "]") }).mkString("\n")
   def asLatex: String = (for (i <- contents) yield { i.mkString("", " & ", "") }).mkString("\\begin{bmatrix}\n", "\n", "\\end{bmatrix}")
@@ -63,12 +63,12 @@ class Matrix (val contents: List[List[Int]]) {
 
   /* Selection */
   /** Select a single row from the matrix. **/
-  def row(idx: Int): List[Int] = contents.drop(idx).head
+  def row(idx: Int): List[Double] = contents.drop(idx).head
   /** Select a single column from the matrix. */
-  def col(idy: Int): List[Int] = for (r <- contents) yield { r.drop(idy).head }
+  def col(idy: Int): List[Double] = for (r <- contents) yield { r.drop(idy).head }
   /** Select a single cell value from the matrix */
-  def cell(idx: Int, idy: Int): Int = row(idx).drop(idy).head
-  def main_diag: List[Int] = {
+  def cell(idx: Int, idy: Int): Double = row(idx).drop(idy).head
+  def main_diag: List[Double] = {
     if square then (for (i <- 0 until cols) yield {
       cell(i, i)
     }).toList
@@ -76,13 +76,13 @@ class Matrix (val contents: List[List[Int]]) {
   }
 
   /* Append */
-  def add_row(other: List[Int]): Matrix = if other.size == cols then Matrix(contents :+ other) else throw SizeException()
-  def add_col(other: List[Int]): Matrix =
-    @tailrec def append_col(l: List[Int], m: List[List[Int]], acc: List[List[Int]]): Matrix = l match
+  def add_row(other: List[Double]): Matrix = if other.size == cols then Matrix(contents :+ other) else throw SizeException()
+  def add_col(other: List[Double]): Matrix =
+    @tailrec def append_col(l: List[Double], m: List[List[Double]], acc: List[List[Double]]): Matrix = l match
       case Nil => Matrix(acc)
       case ::(h, t) => append_col(t, m.tail, acc :+ (m.head :+ h))
-    if other.size == rows then append_col(other, contents, List[List[Int]]()) else throw SizeException()
-  def map(f: Int => Int): Matrix = Matrix(for (i <- contents) yield { i.map(f) })
+    if other.size == rows then append_col(other, contents, List[List[Double]]()) else throw SizeException()
+  def map(f: Double => Double): Matrix = Matrix(for (i <- contents) yield { i.map(f) })
 
   def take_row(idx: Int): Matrix = Matrix(contents.take(idx) ++ contents.drop(idx).tail)
   def take_col(idy: Int): Matrix = Matrix(for (i <- contents) yield { i.take(idy) ++ i.drop(idy).tail })
@@ -106,8 +106,8 @@ class Matrix (val contents: List[List[Int]]) {
    * }}}
    * @return
    */
-  def det: Int = {
-    def det_inner(mat: Matrix): Int = mat.size._1 match
+  def det: Double = {
+    def det_inner(mat: Matrix): Double = mat.size._1 match
       case 2 => (mat.cell(0, 0) * mat.cell(1, 1)) - (mat.cell(1, 0) * mat.cell(0, 1))
       case _ => (for (i <- 0 until cols) yield {
         (-1 * (i % 2)) * cell(0, i) * det_inner(minor(0, i))
@@ -134,13 +134,14 @@ class Matrix (val contents: List[List[Int]]) {
     }).toList)
     else throw MultiplySizeMismatchException()
   }
+  def *(other: Double): Matrix = map(n => n * other)
 }
 
 object Matrix {
-  def apply(contents: List[List[Int]]): Matrix = { val mat = new Matrix(contents)
+  def apply(contents: List[List[Double]]): Matrix = { val mat = new Matrix(contents)
     if mat.valid_size then mat else throw SizeException()
   }
 
-  def identity(size: Int): Matrix = new Matrix ((for (i <- 0 until size) yield {(for (j <- 0 until size) yield {if i == j then 1 else 0}).toList}).toList)
-  def zero(size: Int): Matrix = new Matrix(List.fill(size)(List.fill(size)(0)))
+  def identity(size: Int): Matrix = new Matrix ((for (i <- 0 until size) yield {(for (j <- 0 until size) yield {if i == j then 1d else 0d}).toList}).toList)
+  def zero(size: Int): Matrix = new Matrix(List.fill(size)(List.fill(size)(0d)))
 }

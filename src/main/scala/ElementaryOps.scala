@@ -29,7 +29,7 @@ class ElementaryOps(val mat: Matrix) {
    * [0 0 1]           [0 0 1]
    * }}}
    */
-  def mult(row: Int, scalar: Int): ElementaryOps = {
+  def mult(row: Int, scalar: Double): ElementaryOps = {
     val op = Matrix((for (i <- 0 until mat.rows) yield {
       (for (j <- 0 until mat.cols) yield {
         if i == j then if i == row then scalar else 1 else 0
@@ -49,10 +49,10 @@ class ElementaryOps(val mat: Matrix) {
   def swap(r1: Int, r2: Int): ElementaryOps = {
     val op = Matrix((for (i <- 0 until mat.rows) yield {
       (for (j <- 0 until mat.cols) yield {
-        if j == r1 && i == r2 then 1
-        else if i == r1 && j == r2 then 1
-        else if i == j then 1
-        else 0
+        if j == r1 && i == r2 then 1f
+        else if i == r1 && j == r2 then 1f
+        else if i == j then 1f
+        else 0f
       }).toList
     }).toList)
     ElementaryOps(mat * op)
@@ -66,12 +66,12 @@ class ElementaryOps(val mat: Matrix) {
    * [0 0 1]                [0 0 1]
    * }}}
    */
-  def add(rs: Int, rt: Int, scalar: Int = 1): ElementaryOps = {
+  def add(rs: Int, rt: Int, scalar: Double = 1f): ElementaryOps = {
     val op = Matrix((for (i <- 0 until mat.rows) yield {
       (for (j <- 0 until mat.cols) yield {
         if i == rt && j == rs then scalar
-        else if i == j then 1
-        else 0
+        else if i == j then 1f
+        else 0f
       }).toList
     }).toList)
     ElementaryOps(mat * op)
