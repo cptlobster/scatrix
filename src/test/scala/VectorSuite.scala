@@ -1,5 +1,7 @@
 package dev.cptlobster.scatrix
 
+import vectors.Vec3
+
 import org.scalatest.funsuite.AnyFunSuite
 
 class VectorSuite extends AnyFunSuite {

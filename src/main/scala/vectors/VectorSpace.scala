@@ -17,6 +17,7 @@
 */
 
 package dev.cptlobster.scatrix
+package vectors
 
 /**
  * This is a trait for an arbitrary type of vector space.
@@ -35,7 +36,7 @@ package dev.cptlobster.scatrix
  *   }
  * }}}
  * and all other functions are defined automatically based on those. For an example of a common vector space (R_3), you
- * can look at [[dev.cptlobster.scatrix.Vec3]]'s implementation.
+ * can look at [[Vec3]]'s implementation.
  *
  * = Usage =
  * Vectors can be used with matrices. (coming soon)

@@ -17,6 +17,9 @@
 */
 
 package dev.cptlobster.scatrix
+package vectors
+
+import vectors.VectorSpace
 
 class Vec3(val x: Double, val y: Double, val z: Double) extends VectorSpace[Vec3]:
   // This is an example of defining your own vector space. In this case, we're defining R_3. In this first part, we just
