@@ -36,6 +36,8 @@ class Vector(val items: List[Double]) extends VectorSpace[Vector]:
     force_size(other)
     items.zip(other.items).map((a, b) => a * b).sum
 
+  override def toString: String = items.mkString("{", ", ", "}")
+
 object Vector:
   def apply(items: List[Double]): Vector = new Vector(items)
   def zero(size: Int): Vector = new Vector((for (i <- 0 to size) yield 0d).toList)

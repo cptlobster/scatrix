@@ -33,6 +33,8 @@ class Vec3(val x: Double, val y: Double, val z: Double) extends VectorSpace[Vec3
   /** Take the cross product of two vectors (return the orthogonal complement). */
   def cross(other: Vec3): Vec3 = ???
 
+  override def toString: String = s"{$x, $y, $z}"
+
 object Vec3:
   def apply(x: Double, y: Double, z: Double): Vec3 = new Vec3(x, y, z)
   def zero: Vec3 = new Vec3(0, 0, 0)
