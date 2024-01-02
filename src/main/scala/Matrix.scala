@@ -18,7 +18,7 @@
 
 package dev.cptlobster.scatrix
 
-import exceptions.{MultiplySizeMismatchException, NotSquareMatrixException, SizeException}
+import exceptions.{InvalidDimensionException, MultiplySizeMismatchException, NotSquareMatrixException, SizeException}
 
 import scala.annotation.{tailrec, targetName}
 
@@ -139,7 +139,7 @@ class Matrix (val contents: List[List[Double]]) {
 
 object Matrix {
   def apply(contents: List[List[Double]]): Matrix = { val mat = new Matrix(contents)
-    if mat.valid_size then mat else throw SizeException()
+    if mat.valid_size then mat else throw InvalidDimensionException()
   }
 
   def identity(size: Int): Matrix = new Matrix ((for (i <- 0 until size) yield {(for (j <- 0 until size) yield {if i == j then 1d else 0d}).toList}).toList)

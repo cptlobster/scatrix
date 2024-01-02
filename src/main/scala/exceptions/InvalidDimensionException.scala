@@ -1,6 +1,6 @@
 /*
-    Size Exception
-    Copyright (C) 2023  Dustin Thomas
+    Invalid dimension Exception
+    Copyright (C) 2023-2024  Dustin Thomas
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,6 @@
 package dev.cptlobster.scatrix
 package exceptions
 
-final case class SizeException(private val message: String = "The sizes of matrices you are trying to operate on do not match.",
+final case class InvalidDimensionException(private val message: String = "The dimensions of the objects you are operating on are invalid.",
                                private val cause: Throwable = None.orNull)
   extends Exception(message, cause) 
