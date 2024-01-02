@@ -21,7 +21,7 @@ package algorithms
 
 import scala.annotation.tailrec
 
-class GaussElimination (val mat: Matrix, val pivot: (Int, Int) = (0, 0)) {
+class GaussElimination (val mat: LegacyMatrix, val pivot: (Int, Int) = (0, 0)) {
   val px: Int = pivot._1
   val py: Int = pivot._2
   val pivot_col: List[Float] = mat.col(py)

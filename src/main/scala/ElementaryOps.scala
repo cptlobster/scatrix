@@ -18,7 +18,7 @@
 
 package dev.cptlobster.scatrix
 
-class ElementaryOps(val mat: Matrix) {
+class ElementaryOps(val mat: LegacyMatrix) {
   override def toString: String = mat.toString
 
   /** Perform a multiplication Elementary Row Operation; multiply one row by a scalar
@@ -30,7 +30,7 @@ class ElementaryOps(val mat: Matrix) {
    * }}}
    */
   def mult(row: Int, scalar: Double): ElementaryOps = {
-    val op = Matrix((for (i <- 0 until mat.rows) yield {
+    val op = LegacyMatrix((for (i <- 0 until mat.rows) yield {
       (for (j <- 0 until mat.cols) yield {
         if i == j then if i == row then scalar else 1 else 0
       }).toList
@@ -47,7 +47,7 @@ class ElementaryOps(val mat: Matrix) {
    * }}}
    */
   def swap(r1: Int, r2: Int): ElementaryOps = {
-    val op = Matrix((for (i <- 0 until mat.rows) yield {
+    val op = LegacyMatrix((for (i <- 0 until mat.rows) yield {
       (for (j <- 0 until mat.cols) yield {
         if j == r1 && i == r2 then 1d
         else if i == r1 && j == r2 then 1d
@@ -67,7 +67,7 @@ class ElementaryOps(val mat: Matrix) {
    * }}}
    */
   def add(rs: Int, rt: Int, scalar: Double = 1f): ElementaryOps = {
-    val op = Matrix((for (i <- 0 until mat.rows) yield {
+    val op = LegacyMatrix((for (i <- 0 until mat.rows) yield {
       (for (j <- 0 until mat.cols) yield {
         if i == rt && j == rs then scalar
         else if i == j then 1d
@@ -79,6 +79,6 @@ class ElementaryOps(val mat: Matrix) {
 }
 
 object ElementaryOps {
-  def apply(mat: Matrix): ElementaryOps = new ElementaryOps(mat)
-  def apply(size: Int): ElementaryOps = new ElementaryOps(Matrix.identity(size))
+  def apply(mat: LegacyMatrix): ElementaryOps = new ElementaryOps(mat)
+  def apply(size: Int): ElementaryOps = new ElementaryOps(LegacyMatrix.identity(size))
 }

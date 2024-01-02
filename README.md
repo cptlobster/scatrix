@@ -1,5 +1,8 @@
 # scatrix
-Matrix and Linear Algebra Library in Scala
+Matrix, linear algebra, and vector math library for Scala.
+
+## Documentation
+Coming soon.
 
 ## Building
 This project uses SBT for compiling/running/packaging.
