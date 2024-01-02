@@ -1,6 +1,6 @@
 /*
     Primary Matrix class and objects.
-    Copyright (C) 2023  Dustin Thomas
+    Copyright (C) 2023-2024  Dustin Thomas
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
